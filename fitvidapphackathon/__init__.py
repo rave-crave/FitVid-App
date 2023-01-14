@@ -14,4 +14,4 @@ with app.app_context():
     db.create_all()
 
 from fitvidapphackathon import routes 
-# line 16 might need to be in line 12 - not sure but it's working at the moment
+# line 16 might need to be in line 12 - not sure but it seems to be working at the moment
