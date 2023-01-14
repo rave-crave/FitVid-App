@@ -1,1 +1,1 @@
-print("git 8")
+print("git setup 10 test")
