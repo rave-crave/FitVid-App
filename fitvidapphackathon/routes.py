@@ -1,4 +1,4 @@
-from flask import render_template, url_for, flash, redirect
+from flask import render_template, session, url_for, flash, redirect
 from fitvidapphackathon import app
 from fitvidapphackathon.forms import RegistrationForm, LoginForm
 from fitvidapphackathon.models import Exercise      # later add User
@@ -66,7 +66,7 @@ def random_exercise():
     all_exercises = Exercise.query.all()
     random_exercise = random.choice(all_exercises)
     return render_template('random_exercise.html', exercise=random_exercise)
-   # return render_template('random.html', exercise=random_exercise) Matt's original last line
+
 
 @app.route("/logout")
 def logout():
