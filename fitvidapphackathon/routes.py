@@ -83,7 +83,9 @@ def logout():
     return redirect(url_for("login"))
 
 
-@app.route("/testing")
-def testing():
-    return render_template("testing.html", title='Testing')   
+@app.route("/workouts_by_instructor")   # needs to be changed to show only one column i.e. links to the videos
+def workouts_by_instructor():
+
+    all_workouts_Matt = Workout.query.filter_by(instructor='Matt').all()
+    return render_template("workouts_by_instructor.html", title='Workouts By Instructor', all_workouts_Matt=all_workouts_Matt)   
 
