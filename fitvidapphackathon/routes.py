@@ -3,7 +3,7 @@ from fitvidapphackathon import app
 from fitvidapphackathon.forms import RegistrationForm, LoginForm
 from fitvidapphackathon.models import Exercise      # later add User
 import random
-
+import os
 
 
 new_exercises = [
@@ -33,12 +33,17 @@ new_exercises = [
 @app.route("/")
 @app.route("/home")
 def home():
-    return render_template('home.html', new_exercises=new_exercises)
+    pic_gym_1 = os.path.join(app.config['UPLOAD_FOLDER'], 'gym_1.png')
+    pic_gym_2 = os.path.join(app.config['UPLOAD_FOLDER'], 'gym_2.png')
+    return render_template('home.html', new_exercises=new_exercises, image_3 = pic_gym_1, image_4 = pic_gym_2)
 
 
 @app.route("/about")
 def about():
-    return render_template('about.html', title='About')
+    pic_before = os.path.join(app.config['UPLOAD_FOLDER'], 'before_new.jpg')
+    pic_after = os.path.join(app.config['UPLOAD_FOLDER'], 'after_new.jpg')
+    return render_template("about.html", title='About', image_1 = pic_before, image_2 = pic_after)   # not sure how to not list the images manually
+
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -48,6 +53,7 @@ def register():
         flash(f'Account created for {form.username.data}!', 'success')
         return redirect(url_for('home'))
     return render_template('register.html', title='Register', form=form)
+
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -65,7 +71,8 @@ def login():
 def random_exercise():
     all_exercises = Exercise.query.all()
     random_exercise = random.choice(all_exercises)
-    return render_template('random_exercise.html', exercise=random_exercise)
+    personal_trainer = os.path.join(app.config['UPLOAD_FOLDER'], 'personal_trainer.png')
+    return render_template('random_exercise.html', exercise=random_exercise, image_5 = personal_trainer)
 
 
 @app.route("/logout")
@@ -74,3 +81,6 @@ def logout():
     session.pop("user", None)
     session.pop("email", None)
     return redirect(url_for("login"))
+
+
+

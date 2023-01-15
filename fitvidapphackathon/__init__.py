@@ -1,15 +1,24 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
+import os
+
+PICS_FOLDER = os.path.join('static', 'images')
 
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = '7dc999dc13b12c82360a4ca92411f6a9'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['UPLOAD_FOLDER'] = PICS_FOLDER
 db = SQLAlchemy(app)
 
 ctx = app.app_context()
 ctx.push()
+
+
+
+
+
 
 from fitvidapphackathon.models import Exercise
 
@@ -52,6 +61,7 @@ db.session.commit()
 
 # with app.app_context():
 #     db.create_all()
+
 
 
 

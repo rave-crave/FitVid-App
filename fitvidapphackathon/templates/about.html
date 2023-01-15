@@ -2,8 +2,8 @@
 {% block content %}
     <div>
         <a>
-            <img src="images/before.jpg" alt="Before" style="width:500px;height:600px;">         <!-- to fix + move images where they should be: https://stackoverflow.com/questions/59276105/how-can-i-add-images-to-flask  -->  
-            <img src="images/after.jpg" alt="After" style="width:500px;height:600px;"> 
+            <img src="{{ image_1 }}" alt="Before">
+            <img src="{{ image_2 }}" alt="After">
         </a>
     </div>
 {% endblock content %}
