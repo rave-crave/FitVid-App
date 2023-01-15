@@ -36,3 +36,10 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Log in')
+
+
+class PostForm(FlaskForm):
+    length = StringField('Length', validators=[DataRequired()] )
+    intensity = StringField('Intensity', validators=[DataRequired()] )
+    exercise_type = StringField('Exercise Type', validators=[DataRequired()] )
+    submit = SubmitField('Post')

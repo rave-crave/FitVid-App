@@ -1,6 +1,6 @@
 from flask import render_template, session, url_for, flash, redirect
 from fitvidapphackathon import app, db
-from fitvidapphackathon.forms import RegistrationForm, LoginForm
+from fitvidapphackathon.forms import RegistrationForm, LoginForm, PostForm
 from fitvidapphackathon.models import User, Workout     
 import random
 import os
@@ -123,5 +123,11 @@ def workouts_by_instructor():
     return render_template("workouts_by_instructor.html", title='Workouts By Instructor', all_workouts_Matt=all_workouts_Matt)   
 
 
-# @app.route("/preferences", methods=['GET', 'POST'])     # to do - a form that takes in user preferences
-#     def preferences():
+@app.route("/customised_workout", methods=['GET', 'POST'])    
+# @login_required
+def customised_workout():
+    """
+    Renders a template with a form for customising the workout
+    """
+    form = PostForm()
+    return render_template('customised_workout.html', title='Customised Workout', form=form)
