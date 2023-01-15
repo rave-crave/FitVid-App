@@ -1,7 +1,7 @@
 from flask import render_template, session, url_for, flash, redirect
 from fitvidapphackathon import app
 from fitvidapphackathon.forms import RegistrationForm, LoginForm
-from fitvidapphackathon.models import Exercise      # later add User
+from fitvidapphackathon.models import Workout     # User
 import random
 import os
 
@@ -69,7 +69,7 @@ def login():
 
 @app.route("/random_exercise", methods=['GET', 'POST'])     # Matt's original: @app.route("/")
 def random_exercise():
-    all_exercises = Exercise.query.all()
+    all_exercises = Workout.query.all()
     random_exercise = random.choice(all_exercises)
     personal_trainer = os.path.join(app.config['UPLOAD_FOLDER'], 'personal_trainer.png')
     return render_template('random_exercise.html', exercise=random_exercise, image_5 = personal_trainer)
