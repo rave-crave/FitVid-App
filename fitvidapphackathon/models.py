@@ -1,16 +1,16 @@
 # from datetime import datetime
 from fitvidapphackathon import db
 
-# class User(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     username = db.Column(db.String(20), unique=True, nullable=False)
-#     email = db.Column(db.String(120), unique=True, nullable=False)
-#     image_file = db.Column(db.String(20), nullable=False, default='jpeg')
-#     password = db.Column(db.String(60), nullable=False)
-#     workouts = db.relationship('Workout', backref='instructor', lazy=True)     # research many-to-many relationship
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(20), unique=True, nullable=False)
+    email = db.Column(db.String(120), unique=True, nullable=False)
+    image_file = db.Column(db.String(20), nullable=False, default='jpeg')
+    password = db.Column(db.String(60), nullable=False)
+    workouts = db.relationship('Workout', backref='instructor', lazy=True)     # research many-to-many relationship
 
-#     def  __repr__(self):
-#         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+    def  __repr__(self):
+        return f"User('{self.username}', '{self.email}', '{self.image_file}')"
 
 
 class Workout(db.Model):
@@ -20,7 +20,7 @@ class Workout(db.Model):
     exercise_type = db.Column(db.String(20), nullable=False)
     intensity = db.Column(db.String(20), nullable=False)
     link = db.Column(db.String(200), nullable=False)
-    # user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def  __repr__(self):
         return f"Exercise('{self.name}', '{self.length}', '{self.exercise_type}', '{self.intensity}','{self.link}')"   
