@@ -65,7 +65,7 @@ def login():
 def random_exercise():
     all_exercises = Exercise.query.all()
     random_exercise = random.choice(all_exercises)
-    return render_template('random_exercise.html', title=random_exercise)
+    return render_template('random_exercise.html', exercise=random_exercise)
    # return render_template('random.html', exercise=random_exercise) Matt's original last line
 
 @app.route("/logout")
