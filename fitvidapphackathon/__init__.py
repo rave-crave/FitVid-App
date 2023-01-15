@@ -48,10 +48,11 @@ db = SQLAlchemy(app)
 #     db.create_all()
 
 
+# with app.app_context():
+#     db.create_all()
 
-with app.app_context():
-    db.create_all()
-
+ctx = app.app_context()
+ctx.push()
 
 from fitvidapphackathon import routes 
 

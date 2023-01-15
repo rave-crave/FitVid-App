@@ -37,8 +37,7 @@ class Exercise(db.Model):
     #     self.content = content
     #     self.link = link
 
-# def init_db():
-#     db.create_all()
+
 
 # if __name__ == '__main__':
 #     init_db()
