@@ -17,7 +17,7 @@ class RegistrationForm(FlaskForm):
     submit = SubmitField('Sign Up')
 
 
-    def validate_username(self, username):
+    def validate_username(self, username):                                         # Creating exceptions for trying to use the same username (and email below)
         user = User.query.filter_by(username=username.data).first()
         if user:
             raise ValidationError('This username is taken. Please choose a different one.')

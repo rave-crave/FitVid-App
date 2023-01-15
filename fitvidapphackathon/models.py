@@ -11,18 +11,24 @@ def load_user(user_id):
 
 
 class User(db.Model, UserMixin):
+    """
+    Represents a user with an id, username, email, default picture(*to be changed in the future), password and workouts
+    """
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default='jpeg')
     password = db.Column(db.String(60), nullable=False)
-    workouts = db.relationship('Workout', lazy=True)     # research many-to-many relationship + check whether to add add back_populated or older backref
+    workouts = db.relationship('Workout', lazy=True)     # research many-to-many relationship + check whether to add add 'back_populated' or use the older 'backref'
 
     def  __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
 
 
 class Workout(db.Model):
+    """
+    Represents a workout with an id, name, email, length, exercise_type, intensity, instructor, link and user_id, which serves as a foreign key
+    """
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)    #_id   
     name = db.Column(db.String(50), nullable=False)
     length = db.Column(db.String(10), nullable=False)
@@ -37,7 +43,8 @@ class Workout(db.Model):
 
 
 
-# class Exercise(db.Model):       for the future if time permits --> individual exercises that might comprise a customised workout plan; add instructor
+# class Exercise(db.Model):       for the future --> individual exercises that can comprise a customised workout plan; add instructor
+
 #     id = db.Column(db.Integer, primary_key=True)    # Matt's ID line:   _id = db.Column("id",db.Integer, primary_key = True);       
 #     name = db.Column(db.String(100), nullable=False)       # Matt's line:    name = db.Column(db.String(50))
 #     # date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
@@ -49,7 +56,7 @@ class Workout(db.Model):
 #     # user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
 #     def  __repr__(self):
-#         return f"Exercise('{self.name}', '{self.length}', '{self.exercise_type}', '{self.intensity}','{self.link}')"     # to add this? '{self.date_posted}'
+#         return f"Exercise('{self.name}', '{self.length}', '{self.exercise_type}', '{self.intensity}','{self.link}')"     
 
 
   

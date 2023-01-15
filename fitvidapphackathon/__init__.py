@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 import os
 from flask_login import LoginManager
 
-PICS_FOLDER = os.path.join('static', 'images')     # possibly url_for if there is time to research it
+PICS_FOLDER = os.path.join('static', 'images')     
 
 
 app = Flask(__name__)
@@ -14,13 +14,15 @@ app.config['UPLOAD_FOLDER'] = PICS_FOLDER
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 
-ctx = app.app_context()
-ctx.push()
+ctx = app.app_context()                            # solves the outside of application context issue  (the code below didn't work)            
+ctx.push()                                         # with app.app_context():
+                                                   #     db.create_all()
 
 
 
 from fitvidapphackathon.models import Workout
 
+# Creating workout objects and adding them to the database
 upper1 = Workout(name="Barbell Bench Press", length="Long", exercise_type="Weightlifting", intensity="High", instructor="Chris", link="https://www.youtube.com/watch?v=rT7DgCr-3pg")
 upper2 = Workout(name="Dumbbell Incline Bench Press", length="Medium", exercise_type="Weightlifting", intensity="Medium", instructor="Chris",link="https://www.youtube.com/watch?v=8iPEnn-ltC8")
 upper3 = Workout(name="Dumbbell Chest Flys", length="Medium", exercise_type="Weightlifting", intensity="Medium", instructor="Matt", link="https://youtu.be/eozdVDA78K0?t=33")
@@ -52,13 +54,7 @@ db.create_all()
 db.session.commit()
 
 
-# @app.before_first_request
-# def create_tables():
-#     db.create_all()
 
-
-# with app.app_context():
-#     db.create_all()
 
 
 
