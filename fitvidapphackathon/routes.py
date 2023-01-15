@@ -18,13 +18,13 @@ new_exercises = [
         'date_posted': 'May 3, 2022'
     },
     {   'instructor': 'Chris',
-        'exercise_name': 'Exercise Name 2',
-        'content': 'Second new exercise content',
+        'exercise_name': 'Exercise Name 3',
+        'content': 'Third new exercise content',
         'date_posted': 'May 21, 2022'
     },
     {   'instructor': 'Monika',
-        'exercise_name': 'Exercise Name 2',
-        'content': 'Second new exercise content',
+        'exercise_name': 'Exercise Name 4',
+        'content': 'Fourth new exercise content',
         'date_posted': 'June 1, 2022'
     }
 ]
@@ -67,3 +67,10 @@ def random_exercise():
     random_exercise = random.choice(all_exercises)
     return render_template('random.html', title=random_exercise)
    # return render_template('random.html', exercise=random_exercise) Matt's original last line
+
+@app.route("/logout")
+def logout():
+    flash("You have been logged out!", "info")
+    session.pop("user", None)
+    session.pop("email", None)
+    return redirect(url_for("login"))
