@@ -7,7 +7,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
     image_file = db.Column(db.String(20), nullable=False, default='jpeg')
     password = db.Column(db.String(60), nullable=False)
-    new_exercises = db.relationship('Exercise', backref='instructor', lazy=True)
+    # new_exercises = db.relationship('Workout', backref='instructor', lazy=True)
 
     def  __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
@@ -15,11 +15,13 @@ class User(db.Model):
 
 class Workout(db.Model):
     _id = db.Column("id",db.Integer, primary_key = True)
-    name = db.Column(db.String(50))
-    length = db.Column(db.String(10))
-    exercise_type = db.Columnn(db.String(20))
-    intensity = db.Column(db.String(20))
-    link = db.Column(db.String(200))
+    name = db.Column(db.String(50), nullable=False)
+    length = db.Column(db.String(10), nullable=False)
+    exercise_type = db.Column(db.String(20), nullable=False)
+    intensity = db.Column(db.String(20), nullable=False)
+    link = db.Column(db.String(200), nullable=False)
+    # user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
     def  __repr__(self):
         return f"Exercise('{self.name}', '{self.length}', '{self.exercise_type}', '{self.intensity}','{self.link}')"   
 
