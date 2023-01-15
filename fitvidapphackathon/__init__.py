@@ -61,6 +61,7 @@ db.session.commit()
 
 
 
+
 from fitvidapphackathon import routes 
 
 
